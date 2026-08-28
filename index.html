@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cult & Classics — The Archive</title>
+<!-- ICON LINK -->
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/RXGV777/c-c-ledger@main/c&c_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14110E;
+    --panel:#1C1712;
+    --panel-2:#221C16;
+    --row-alt:#1F1A14;
+    --hairline:#3A3024;
+    --brass:#B08D57;
+    --brass-dim:#7A6440;
+    --rust:#9A3324;
+    --rust-bright:#C24630;
+    --parchment:#E8DCC8;
+    --parchment-dim:#B7AB92;
+    --muted:#7C7160;
+    --moss:#5E7350;
+    --slate:#4E6B78;
+    --plum:#6E4A63;
+    --gold:#C9A24B;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(176,141,87,0.06), transparent 45%),
+      radial-gradient(ellipse at bottom right, rgba(154,51,36,0.05), transparent 50%),
+      var(--ink);
+    color:var(--parchment);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding:0 0 80px 0;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- HEADER ---------- */
+  header.masthead{
+    padding:48px 28px 32px;
+    border-bottom:1px solid var(--hairline);
+    background:
+      linear-gradient(180deg, rgba(176,141,87,0.05), transparent);
+  }
+  .masthead-inner{max-width:1180px;margin:0 auto;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--brass-dim);display:inline-block;}
+  h1.title{
+    font-family:'Cinzel',serif;
+    font-weight:700;
+    font-size:clamp(30px,5vw,52px);
+    letter-spacing:0.02em;
+    margin:0 0 10px 0;
+    color:var(--parchment);
+    text-shadow:0 2px 0 rgba(0,0,0,0.4);
+  }
+  .title .amp{color:var(--rust-bright);}
+  .subtitle{
+    font-size:14.5px;
+    color:var(--parchment-dim);
+    max-width:640px;
+    line-height:1.55;
+    margin:0;
+  }
+  .stats-row{
+    display:flex;
+    gap:26px;
+    margin-top:26px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    font-family:'JetBrains Mono',monospace;
+  }
+  .stat .num{
+    font-size:22px;
+    color:var(--gold);
+    font-weight:600;
+    display:block;
+    line-height:1.1;
+  }
+  .stat .lbl{
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- CONTROLS ---------- */
+  .controls{
+    margin-top:28px;
+    padding:22px 28px;
+    background:var(--panel);
+    border:1px solid var(--hairline);
+    border-radius:3px;
+  }
+  .controls-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .search-box{
+    flex:1 1 220px;
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+  .search-box input{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--hairline);
+    color:var(--parchment);
+    padding:10px 34px 10px 34px;
+    border-radius:2px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+  }
+  .search-box input:focus{outline:none;border-color:var(--brass);}
+  .search-box::before{
+    content:"⌕";
+    position:absolute;
+    left:12px;top:50%;transform:translateY(-50%);
+    color:var(--muted);
+    font-size:15px;
+  }
+  .search-clear-btn{
+    position:absolute;
+    right:10px;
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-size:14px;
+    cursor:pointer;
+    padding:2px 6px;
+    display:none;
+    line-height:1;
+  }
+  .search-clear-btn:hover{color:var(--rust-bright);}
+
+  select.watch-filter{
+    background:var(--ink);
+    border:1px solid var(--hairline);
+    color:var(--parchment);
+    padding:10px 12px;
+    border-radius:2px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+  }
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:10px 16px;
+    border-radius:2px;
+    border:1px solid var(--hairline);
+    background:var(--panel-2);
+    color:var(--parchment);
+    cursor:pointer;
+    transition:border-color .15s, color .15s, background .15s;
+    white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--brass);color:var(--gold);}
+  .btn.primary{
+    background:var(--rust);
+    border-color:var(--rust);
+    color:#F3E8DC;
+  }
+  .btn.primary:hover{background:var(--rust-bright);border-color:var(--rust-bright);color:#fff;}
+  .btn.primary.dirty{animation:pulseGlow 1.6s ease-in-out infinite;}
+  @keyframes pulseGlow{
+    0%,100%{box-shadow:0 0 0 0 rgba(194,70,48,0.55);}
+    50%{box-shadow:0 0 0 6px rgba(194,70,48,0);}
+  }
+  .btn:disabled{opacity:.4;cursor:default;}
+  .btn.ghost{background:transparent;}
+
+  /* Tag Manager Bar */
+  .tag-filter-row{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px dashed var(--hairline);
+    align-items:center;
+  }
+  .tag-chip-container{
+    display:inline-flex;
+    align-items:center;
+    position:relative;
+  }
+  .tag-chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:6px 11px;
+    border-radius:999px;
+    border:1px solid var(--hairline);
+    background:transparent;
+    color:var(--parchment-dim);
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .tag-chip:hover{border-color:var(--brass-dim);}
+  .tag-chip.active{
+    color:var(--ink);
+    border-color:transparent;
+    font-weight:600;
+  }
+  .tag-del-btn{
+    background:var(--ink);
+    border:1px solid var(--hairline);
+    color:var(--muted);
+    border-radius:50%;
+    width:16px;height:16px;
+    font-size:10px;
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-left:-6px;
+    margin-right:4px;
+    cursor:pointer;
+    z-index:2;
+  }
+  .tag-del-btn:hover{color:var(--rust-bright);border-color:var(--rust-bright);}
+
+  .add-tag-inline{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .add-tag-inline input{
+    background:var(--ink);
+    border:1px solid var(--hairline);
+    color:var(--parchment);
+    padding:4px 8px;
+    border-radius:999px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    width:110px;
+  }
+  .add-tag-inline input:focus{outline:none;border-color:var(--brass);}
+
+  .clear-filters{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--muted);
+    text-decoration:underline;
+    cursor:pointer;
+    align-self:center;
+    margin-left:4px;
+  }
+  .clear-filters:hover{color:var(--rust-bright);}
+
+  /* ---------- ADD DRAWER ---------- */
+  .add-drawer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .add-drawer.open{max-height:340px;}
+  .add-drawer-inner{
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px dashed var(--hairline);
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:14px 16px;
+  }
+  .field label{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .field input[type=text], .field input[type=number]{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--hairline);
+    color:var(--parchment);
+    padding:9px 12px;
+    border-radius:2px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+  }
+  .field input:focus{outline:none;border-color:var(--brass);}
+  .field.tags-field{grid-column:1 / -1;}
+  .tags-checklist{
+    display:flex;flex-wrap:wrap;gap:7px;
+  }
+  .tag-check{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--hairline);
+    color:var(--parchment-dim);
+    cursor:pointer;
+    user-select:none;
+  }
+  .tag-check.on{
+    color:var(--ink);
+    border-color:transparent;
+    font-weight:600;
+  }
+  .add-actions{grid-column:1 / -1;display:flex;gap:10px;margin-top:4px;}
+
+  /* ---------- TABLE ---------- */
+  .table-panel{
+    margin-top:22px;
+    background:var(--panel);
+    border:1px solid var(--hairline);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  thead th{
+    text-align:left;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brass);
+    padding:14px 16px;
+    border-bottom:1px solid var(--hairline);
+    cursor:pointer;
+    user-select:none;
+    white-space:nowrap;
+  }
+  thead th:hover{color:var(--gold);}
+  thead th .arrow{font-size:9px;margin-left:5px;color:var(--muted);}
+  thead th.active .arrow{color:var(--rust-bright);}
+  thead th.no-sort{cursor:default;}
+  thead th.no-sort:hover{color:var(--brass);}
+
+  tbody tr{
+    border-bottom:1px solid var(--hairline);
+    transition:background .12s;
+  }
+  tbody tr:nth-child(even){background:var(--row-alt);}
+  tbody tr:hover{background:rgba(176,141,87,0.07);}
+  tbody td{
+    padding:13px 16px;
+    font-size:13.5px;
+    vertical-align:middle;
+  }
+  td.col-idx{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--muted);
+    font-size:11.5px;
+    width:38px;
+  }
+  td.col-title{font-weight:500;color:var(--parchment);}
+  td.col-year{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--parchment-dim);
+    width:80px;
+  }
+  td.col-tags{
+    display:flex;flex-wrap:wrap;gap:5px;
+    max-width:340px;
+  }
+  .edit-input-title, .edit-input-year {
+    background:var(--ink);
+    border:1px solid var(--brass);
+    color:var(--parchment);
+    padding:6px 8px;
+    border-radius:2px;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    width:100%;
+  }
+  .edit-input-year {
+    font-family:'JetBrains Mono',monospace;
+  }
+  .pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:999px;
+    color:var(--ink);
+    font-weight:600;
+    white-space:nowrap;
+  }
+  td.col-watch{width:96px;text-align:center;}
+  td.col-del{width:64px;text-align:center;white-space:nowrap;}
+  .del-btn, .edit-btn{
+    background:none;border:none;color:var(--muted);
+    cursor:pointer;font-size:14px;line-height:1;
+    transition:color .15s;
+    padding:4px;
+  }
+  .del-btn:hover{color:var(--rust-bright);}
+  .edit-btn:hover{color:var(--gold);}
+  .edit-btn.on{color:var(--gold);}
+  .tag-check.small{font-size:9.5px;padding:5px 9px;}
+  .row-editing td{background:rgba(176,141,87,0.06);}
+
+  /* stamp toggle */
+  .stamp-toggle{
+    position:relative;
+    width:82px;height:34px;
+    margin:0 auto;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .stamp-toggle input{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;margin:0;}
+  .stamp-face{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.1em;
+    padding:5px 10px;
+    border-radius:3px;
+    border:1.5px solid var(--hairline);
+    color:var(--muted);
+    transition:all .15s;
+  }
+  .stamp-toggle input:checked ~ .stamp-face{
+    border-color:var(--rust-bright);
+    color:var(--rust-bright);
+    transform:rotate(-6deg);
+    font-weight:700;
+    box-shadow:0 0 0 1px rgba(194,70,48,0.25) inset;
+  }
+
+  .empty-state{
+    padding:60px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+  }
+
+  footer.foot{
+    max-width:1180px;margin:26px auto 0;padding:0 28px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  .toast{
+    position:fixed;
+    bottom:24px;left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--panel-2);
+    border:1px solid var(--brass);
+    color:var(--parchment);
+    padding:12px 20px;
+    border-radius:3px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.03em;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s, transform .25s;
+    z-index:100;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .scroll-nav{
+    position:fixed;
+    right:22px;
+    bottom:28px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    z-index:90;
+  }
+  .scroll-btn{
+    width:42px;height:42px;
+    border-radius:50%;
+    background:var(--panel-2);
+    border:1px solid var(--brass-dim);
+    color:var(--brass);
+    font-size:16px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;
+    transform:translateY(8px);
+    pointer-events:none;
+    transition:opacity .2s, transform .2s, border-color .15s, color .15s, background .15s;
+    box-shadow:0 3px 10px rgba(0,0,0,0.4);
+  }
+  .scroll-btn.visible{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+  .scroll-btn:hover{
+    border-color:var(--rust-bright);
+    color:var(--gold);
+    background:var(--panel);
+  }
+  @media(max-width:640px){
+    .scroll-nav{right:14px;bottom:18px;}
+    .scroll-btn{width:38px;height:38px;font-size:14px;}
+  }
+
+  @media(max-width:640px){
+    .add-drawer-inner{grid-template-columns:1fr;}
+    td.col-tags{max-width:180px;}
+    header.masthead{padding:36px 18px 26px;}
+    .wrap,.table-panel,footer.foot{padding-left:14px;padding-right:14px;}
+    .controls{padding:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="eyebrow">Grand Archive &nbsp;·&nbsp; 1950–1999</div>
+    <h1 class="title">Cult <span class="amp">&amp;</span> Classics Goodies</h1>
+    <p class="subtitle">A reference catalog of old-school fantasy films — from 50s Italian peplums to the era of practical effects. Built for worldbuilding research.</p>
+    <div class="stats-row" id="statsRow"></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="controls">
+    <div class="controls-row">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search titles…">
+        <button class="search-clear-btn" id="searchClearBtn" title="Clear search">✕</button>
+      </div>
+      <select class="watch-filter" id="watchFilter">
+        <option value="all">All Statuses</option>
+        <option value="watched">Watched</option>
+        <option value="unwatched">Unwatched</option>
+      </select>
+      <button class="btn ghost" id="addToggleBtn">+ Add Title</button>
+      <button class="btn primary" id="saveBtn" disabled>Save Changes</button>
+    </div>
+
+    <div class="tag-filter-row" id="tagFilterRow"></div>
+
+    <div class="add-drawer" id="addDrawer">
+      <div class="add-drawer-inner">
+        <div class="field">
+          <label>Movie Title</label>
+          <input type="text" id="newTitle" placeholder="e.g. Sword of the Beast">
+        </div>
+        <div class="field">
+          <label>Year</label>
+          <input type="number" id="newYear" placeholder="1985" min="1900" max="2100">
+        </div>
+        <div class="field tags-field">
+          <label>Tags</label>
+          <div class="tags-checklist" id="newTagsChecklist"></div>
+        </div>
+        <div class="add-actions">
+          <button class="btn primary" id="confirmAddBtn">Add to Ledger</button>
+          <button class="btn ghost" id="cancelAddBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-panel">
+    <table>
+      <thead>
+        <tr>
+          <th class="no-sort">#</th>
+          <th data-sort="title">Title <span class="arrow">▾</span></th>
+          <th data-sort="year">Year <span class="arrow">▾</span></th>
+          <th class="no-sort">Tags</th>
+          <th data-sort="watched" style="text-align:center;">Status <span class="arrow">▾</span></th>
+          <th class="no-sort"></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="empty-state" id="emptyState" style="display:none;">No titles match your current filter settings.</div>
+  </div>
+
+  <footer class="foot">
+    <span id="footCount">—</span>
+    <span>©2026 RXGV, a fun personal project. All Rights Reserved</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="scroll-nav">
+  <button class="scroll-btn" id="scrollTopBtn" title="Scroll to top">▲</button>
+  <button class="scroll-btn" id="scrollBottomBtn" title="Scroll to bottom">▼</button>
+</div>
+
+<script>
+const DEFAULT_DATA = [{"title": "Conan the Barbarian", "year": 1982, "tags": ["sword-and-sorcery", "action", "adventure", "monster"], "watched": true}, {"title": "Excalibur", "year": 1981, "tags": ["fantasy", "semi-historical", "romance", "adventure", "legend"], "watched": true}, {"title": "Dragonslayer", "year": 1981, "tags": ["fantasy", "monster", "adventure"], "watched": true}, {"title": "The 13th Warrior", "year": 1999, "tags": ["historical", "monster", "action", "adventure"], "watched": true}, {"title": "Flesh + Blood", "year": 1985, "tags": ["historical", "drama", "action", "romance"], "watched": true}, {"title": "Ladyhawke", "year": 1985, "tags": ["fantasy", "romance", "adventure"], "watched": true}, {"title": "Conan the Destroyer", "year": 1984, "tags": ["sword-and-sorcery", "action", "adventure", "monster"], "watched": false}, {"title": "Krull", "year": 1983, "tags": ["sword-and-sorcery", "sci-fi", "monster", "adventure"], "watched": false}, {"title": "Clash of the Titans", "year": 1981, "tags": ["mythology", "fantasy", "monster", "adventure"], "watched": false}, {"title": "Willow", "year": 1988, "tags": ["fantasy", "comedy", "adventure"], "watched": false}, {"title": "Labyrinth", "year": 1986, "tags": ["fantasy", "comedy", "adventure"], "watched": false}, {"title": "The NeverEnding Story", "year": 1984, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "Masters of the Universe", "year": 1987, "tags": ["sword-and-sorcery", "sci-fi", "action"], "watched": false}, {"title": "Red Sonja", "year": 1985, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "The Beastmaster", "year": 1982, "tags": ["sword-and-sorcery", "monster", "action", "adventure"], "watched": false}, {"title": "Hawk the Slayer", "year": 1980, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "The Sword and the Sorcerer", "year": 1982, "tags": ["sword-and-sorcery", "action", "adventure", "monster"], "watched": false}, {"title": "Kull the Conqueror", "year": 1997, "tags": ["sword-and-sorcery", "action", "adventure", "monster"], "watched": false}, {"title": "Deathstalker", "year": 1983, "tags": ["sword-and-sorcery", "exploitation", "action", "adventure"], "watched": false}, {"title": "Deathstalker II", "year": 1987, "tags": ["sword-and-sorcery", "exploitation", "comedy", "action"], "watched": false}, {"title": "Deathstalker and the Warriors from Hell", "year": 1988, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Deathstalker III", "year": 1988, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Deathstalker IV: Match of Titans", "year": 1991, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Barbarian Queen", "year": 1985, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Barbarian Queen II: The Empress Strikes Back", "year": 1990, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Hercules and the Amazon Woman", "year": 1994, "tags": ["mythology", "action", "adventure"], "watched": false}, {"title": "Jason and the Argonauts", "year": 1963, "tags": ["mythology", "monster", "adventure"], "watched": false}, {"title": "The Golden Voyage Of Sinbad", "year": 1973, "tags": ["mythology", "monster", "adventure"], "watched": false}, {"title": "Sinbad and the Eye of the Tiger", "year": 1977, "tags": ["mythology", "monster", "adventure"], "watched": false}, {"title": "Ator, The Fighting Eagle", "year": 1982, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Ator 2: The Blade Master", "year": 1984, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Ator 3: The Iron Warrior", "year": 1987, "tags": ["sword-and-sorcery", "exploitation", "sci-fi", "action"], "watched": false}, {"title": "Cave Dwellers (Blademaster)", "year": 1984, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Gunan, King of the Barbarians", "year": 1982, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Ironmaster", "year": 1983, "tags": ["sword-and-sorcery", "historical", "action"], "watched": false}, {"title": "Yor, The Hunter from the Future", "year": 1983, "tags": ["sword-and-sorcery", "sci-fi", "monster", "action"], "watched": false}, {"title": "Wizards of the Lost Kingdom", "year": 1985, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "Wizards of the Demon Swords", "year": 1991, "tags": ["sword-and-sorcery", "action"], "watched": false}, {"title": "Hundra", "year": 1983, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "Sorceress", "year": 1982, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "She", "year": 1984, "tags": ["sword-and-sorcery", "sci-fi", "adventure"], "watched": false}, {"title": "Sheena", "year": 1984, "tags": ["sword-and-sorcery", "adventure", "action"], "watched": false}, {"title": "She-Wolves of the Wasteland, Aka Phoenix the Warrior", "year": 1988, "tags": ["sword-and-sorcery", "sci-fi", "exploitation", "action"], "watched": false}, {"title": "Amazons", "year": 1986, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Golden Temple Amazons", "year": 1986, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Warrior Queen", "year": 1987, "tags": ["sword-and-sorcery", "historical", "exploitation", "action"], "watched": false}, {"title": "War Goddess", "year": 1973, "tags": ["mythology", "exploitation", "action"], "watched": false}, {"title": "The Warrior and the Sorceress", "year": 1984, "tags": ["sword-and-sorcery", "action", "drama"], "watched": false}, {"title": "The Sword of the Barbarians", "year": 1982, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "The Barbarians", "year": 1987, "tags": ["sword-and-sorcery", "exploitation", "comedy", "action"], "watched": false}, {"title": "The Seven Magnificent Gladiators", "year": 1983, "tags": ["sword-and-sorcery", "historical", "action"], "watched": false}, {"title": "Thor the Conqueror", "year": 1983, "tags": ["sword-and-sorcery", "mythology", "exploitation", "action"], "watched": false}, {"title": "Invincible Barbarian", "year": 1982, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "The Archer: Fugitive from the Empire", "year": 1981, "tags": ["sword-and-sorcery", "adventure", "action"], "watched": false}, {"title": "The Throne of Fire", "year": 1983, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Quest for the Mighty Sword", "year": 1990, "tags": ["sword-and-sorcery", "exploitation", "action"], "watched": false}, {"title": "Sword of the Valiant (Gawain and the Green Knight)", "year": 1984, "tags": ["fantasy", "historical", "adventure", "legend"], "watched": false}, {"title": "The Dungeonmaster", "year": 1985, "tags": ["sword-and-sorcery", "sci-fi", "horror", "monster"], "watched": false}, {"title": "The Land of Faraway", "year": 1988, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "Hercules", "year": 1983, "tags": ["mythology", "action", "adventure"], "watched": false}, {"title": "The Adventures of Hercules", "year": 1985, "tags": ["mythology", "action", "adventure"], "watched": false}, {"title": "Hercules", "year": 1958, "tags": ["mythology", "historical", "action", "adventure"], "watched": false}, {"title": "Hercules Unchained", "year": 1959, "tags": ["mythology", "historical", "action", "adventure"], "watched": false}, {"title": "Beastmaster 2: Through the Portal of Time", "year": 1990, "tags": ["sword-and-sorcery", "sci-fi", "comedy", "action"], "watched": false}, {"title": "Beastmaster III", "year": 1996, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "The Devil's Sword (Golok Setan)", "year": 1984, "tags": ["sword-and-sorcery", "horror", "monster", "action"], "watched": false}, {"title": "The 7th Voyage of Sinbad", "year": 1958, "tags": ["mythology", "monster", "adventure"], "watched": false}, {"title": "Ulysses", "year": 1954, "tags": ["mythology", "historical", "monster", "adventure"], "watched": false}, {"title": "Sadko", "year": 1953, "tags": ["fantasy", "monster", "adventure", "legend"], "watched": false}, {"title": "Ilya Muromets (Sword and the Dragon)", "year": 1956, "tags": ["fantasy", "monster", "action", "adventure", "legend"], "watched": false}, {"title": "The Magic Voyage of Sinbad", "year": 1953, "tags": ["fantasy", "monster", "adventure", "legend"], "watched": false}, {"title": "The Magic Sword", "year": 1950, "tags": ["fantasy", "adventure", "legend"], "watched": false}, {"title": "The Princess Bride", "year": 1987, "tags": ["fantasy", "comedy", "romance", "adventure"], "watched": false}, {"title": "Time Bandits", "year": 1981, "tags": ["fantasy", "comedy", "sci-fi", "adventure"], "watched": false}, {"title": "The Adventures of Baron Munchausen", "year": 1988, "tags": ["fantasy", "comedy", "adventure"], "watched": false}, {"title": "Erik the Viking", "year": 1989, "tags": ["fantasy", "mythology", "comedy", "adventure", "legend"], "watched": false}, {"title": "Army of Darkness", "year": 1992, "tags": ["horror", "comedy", "action", "monster"], "watched": false}, {"title": "Hook", "year": 1991, "tags": ["fantasy", "comedy", "adventure"], "watched": false}, {"title": "Highlander", "year": 1986, "tags": ["fantasy", "action", "drama"], "watched": false}, {"title": "Highlander II: The Quickening", "year": 1991, "tags": ["sci-fi", "action", "drama"], "watched": false}, {"title": "Flash Gordon", "year": 1980, "tags": ["sci-fi", "adventure", "action"], "watched": false}, {"title": "Monty Python and the Holy Grail", "year": 1975, "tags": ["fantasy", "comedy", "historical", "legend"], "watched": false}, {"title": "Jabberwocky", "year": 1977, "tags": ["fantasy", "comedy", "monster"], "watched": false}, {"title": "Return to Oz", "year": 1985, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "The Wizard of Oz", "year": 1939, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "A Little Princess", "year": 1995, "tags": ["drama", "fantasy"], "watched": false}, {"title": "Ronia: The Robber's Daughter", "year": 1984, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "Arabian Adventure", "year": 1979, "tags": ["fantasy", "adventure"], "watched": false}, {"title": "Snow White: A Tale of Terror", "year": 1997, "tags": ["fantasy", "gothic", "horror"], "watched": false}, {"title": "Sleepy Hollow", "year": 1999, "tags": ["gothic", "horror", "monster"], "watched": false}, {"title": "Young Sherlock Holmes", "year": 1985, "tags": ["fantasy", "adventure", "drama"], "watched": false}, {"title": "Quest for Fire", "year": 1981, "tags": ["historical", "drama", "adventure"], "watched": false}, {"title": "Gawain and the Green Knight", "year": 1973, "tags": ["fantasy", "historical", "adventure", "legend"], "watched": false}, {"title": "King Arthur, the Young Warlord", "year": 1975, "tags": ["historical", "adventure", "drama", "legend"], "watched": false}, {"title": "Arthur the King", "year": 1985, "tags": ["fantasy", "historical", "drama", "legend"], "watched": false}, {"title": "Jaka Sembung (The Warrior)", "year": 1981, "tags": ["sword-and-sorcery", "action", "adventure"], "watched": false}, {"title": "Warlock", "year": 1989, "tags": ["gothic", "horror", "sci-fi"], "watched": false}, {"title": "Lair of the White Worm", "year": 1988, "tags": ["gothic", "horror", "monster"], "watched": false}, {"title": "The Company of Wolves", "year": 1984, "tags": ["gothic", "horror", "drama"], "watched": false}, {"title": "The Gorgon", "year": 1964, "tags": ["gothic", "horror", "monster"], "watched": false}, {"title": "Captain Kronos: Vampire Hunter", "year": 1974, "tags": ["gothic", "horror", "monster", "action"], "watched": false}, {"title": "Something Wicked This Way Comes", "year": 1983, "tags": ["gothic", "horror", "drama"], "watched": false}, {"title": "Dracula", "year": 1979, "tags": ["gothic", "horror", "monster", "romance"], "watched": false}, {"title": "Legend of the Mountain", "year": 1979, "tags": ["gothic", "drama", "adventure"], "watched": false}, {"title": "The Hourglass Sanatorium", "year": 1973, "tags": ["drama", "gothic"], "watched": false}, {"title": "Zardoz", "year": 1974, "tags": ["sci-fi", "drama"], "watched": false}, {"title": "Valerie and Her Week of Wonders", "year": 1970, "tags": ["gothic", "drama"], "watched": false}, {"title": "The City of Lost Children", "year": 1995, "tags": ["gothic", "drama", "sci-fi"], "watched": false}, {"title": "What Dreams May Come", "year": 1998, "tags": ["drama", "romance"], "watched": false}, {"title": "Ruslan and Ludmila", "year": 1972, "tags": ["fantasy", "adventure", "drama", "legend"], "watched": false}, {"title": "The Sisterhood", "year": 1988, "tags": ["sci-fi", "exploitation", "action"], "watched": false}, {"title": "House", "year": 1977, "tags": ["horror", "gothic", "comedy"], "watched": false}, {"title": "Phantom of the Paradise", "year": 1974, "tags": ["horror", "gothic", "drama"], "watched": false}, {"title": "Circle of Iron", "year": 1978, "tags": ["drama", "adventure"], "watched": false}, {"title": "The Clan of the Cave Bear", "year": 1986, "tags": ["historical", "drama"], "watched": false}, {"title": "The Tempest", "year": 1979, "tags": ["semi-historical", "drama"], "watched": false}, {"title": "Orlando", "year": 1992, "tags": ["semi-historical", "drama", "romance"], "watched": false}, {"title": "The Secret of Roan Inish", "year": 1994, "tags": ["semi-historical", "drama"], "watched": false}, {"title": "The Navigator: A Medieval Odyssey", "year": 1988, "tags": ["semi-historical", "adventure", "drama"], "watched": false}, {"title": "Rome 2072 AD: The New Gladiators", "year": 1984, "tags": ["sci-fi", "action", "exploitation"], "watched": false}, {"title": "The Spirit of the Beehive", "year": 1973, "tags": ["drama", "semi-historical"], "watched": false}, {"title": "The Lost Empire", "year": 1984, "tags": ["sci-fi", "action", "exploitation"], "watched": false}, {"title": "Barbarella", "year": 1968, "tags": ["sci-fi", "exploitation", "drama"], "watched": false}, {"title": "Caligula", "year": 1979, "tags": ["historical", "exploitation", "drama"], "watched": false}, {"title": "Caligula and Messalina", "year": 1981, "tags": ["historical", "exploitation", "drama"], "watched": false}, {"title": "Nero and Poppea", "year": 1982, "tags": ["historical", "exploitation", "drama"], "watched": false}, {"title": "The Arena", "year": 1974, "tags": ["historical", "exploitation", "action"], "watched": false}, {"title": "Conquest", "year": 1983, "tags": ["sword-and-sorcery", "exploitation", "drama"], "watched": false}, {"title": "Hearts and Armour", "year": 1983, "tags": ["historical", "romance", "drama"], "watched": false}, {"title": "Torture Dungeon", "year": 1970, "tags": ["horror", "exploitation"], "watched": false}, {"title": "The Fist of Death", "year": 1982, "tags": ["action", "exploitation"], "watched": false}, {"title": "Mystics in Bali (Leák)", "year": 1981, "tags": ["horror", "exploitation", "monster"], "watched": false}];
+
+const STORAGE_KEY = 'swordSorceryLedger_v1';
+const STORAGE_TAGS_KEY = 'swordSorceryLedger_customTags_v1';
+
+const DEFAULT_TAG_COLORS = {
+  'sword-and-sorcery': '#C24630',
+  'fantasy': '#C9A24B',
+  'mythology': '#8A6FB0',
+  'legend': '#6F8A5E',
+  'gothic': '#6E4A63',
+  'horror': '#7A2E2E',
+  'monster': '#4E6B78',
+  'action': '#9A3324',
+  'adventure': '#5E7350',
+  'romance': '#B0708C',
+  'comedy': '#7FA65C',
+  'historical': '#7C8A99',
+  'semi-historical': '#5E7A85',
+  'exploitation': '#8C4A2E',
+  'erotica': '#A13C6B',
+  'drama': '#6B6152',
+  'sci-fi': '#4F7A8C'
+};
+
+let tagColors = {};
+let allTagsList = [];
+
+let state = [];
+let activeTagFilters = new Set();
+let sortKey = 'title';
+let sortDir = 'asc';
+let dirty = false;
+let newTagsSelected = new Set();
+let editingIndices = new Set();
+
+let keyBuffer = '';
+let keyBufferTimeout = null;
+
+function loadTags(){
+  try{
+    const raw = localStorage.getItem(STORAGE_TAGS_KEY);
+    if(raw){
+      tagColors = JSON.parse(raw);
+    }else{
+      tagColors = JSON.parse(JSON.stringify(DEFAULT_TAG_COLORS));
+    }
+  }catch(e){
+    tagColors = JSON.parse(JSON.stringify(DEFAULT_TAG_COLORS));
+  }
+  allTagsList = Object.keys(tagColors);
+}
+
+function saveTags(){
+  try{
+    localStorage.setItem(STORAGE_TAGS_KEY, JSON.stringify(tagColors));
+  }catch(e){}
+}
+
+function getRandomColor(){
+  const colors = ['#C24630', '#C9A24B', '#8A6FB0', '#6F8A5E', '#6E4A63', '#7A2E2E', '#4E6B78', '#9A3324', '#5E7350', '#B0708C', '#7FA65C', '#7C8A99', '#5E7A85', '#8C4A2E', '#4F7A8C'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      state = JSON.parse(raw);
+      return;
+    }
+  }catch(e){ /* fall through to default */ }
+  state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+
+function applyOneTimeCorrections(){
+  const key = 'swordSorceryLedger_fix_excalibur_v1';
+  try{
+    if(!localStorage.getItem(key)){
+      const exc = state.find(m => m.title === 'Excalibur' && m.year === 1981);
+      if(exc && exc.tags.includes('historical') && !exc.tags.includes('semi-historical')){
+        exc.tags = exc.tags.map(t => t === 'historical' ? 'semi-historical' : t);
+      }
+      localStorage.setItem(key, '1');
+    }
+  }catch(e){}
+
+  const key2 = 'swordSorceryLedger_fix_fantasytag_v1';
+  try{
+    if(!localStorage.getItem(key2)){
+      state.forEach(m=>{
+        const merged = [];
+        m.tags.forEach(t=>{
+          const nt = (t === 'fantasy-adventure' || t === 'high-fantasy') ? 'fantasy' : t;
+          if(!merged.includes(nt)) merged.push(nt);
+        });
+        m.tags = merged;
+      });
+      localStorage.setItem(key2, '1');
+    }
+  }catch(e){}
+
+  const key3 = 'swordSorceryLedger_add_legendtag_v1';
+  try{
+    if(!localStorage.getItem(key3)){
+      const legendTitles = new Set([
+        'Excalibur|1981',
+        'Sword of the Valiant (Gawain and the Green Knight)|1984',
+        'Gawain and the Green Knight|1973',
+        'King Arthur, the Young Warlord|1975',
+        'Arthur the King|1985',
+        'Ilya Muromets (Sword and the Dragon)|1956',
+        'Sadko|1953',
+        'The Magic Voyage of Sinbad|1953',
+        'Ruslan and Ludmila|1972',
+        'The Magic Sword|1950',
+        'Erik the Viking|1989',
+        'Monty Python and the Holy Grail|1975'
+      ]);
+      state.forEach(m=>{
+        if(legendTitles.has(m.title + '|' + m.year) && !m.tags.includes('legend')){
+          m.tags.push('legend');
+        }
+      });
+      localStorage.setItem(key3, '1');
+    }
+  }catch(e){}
+}
+
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    saveTags();
+    dirty = false;
+    updateSaveBtn();
+    showToast('Saved to browser storage.');
+  }catch(e){
+    showToast('Failed to save — storage may be full or blocked.');
+  }
+}
+
+function markDirty(){
+  dirty = true;
+  updateSaveBtn();
+}
+
+function updateSaveBtn(){
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = !dirty;
+  btn.classList.toggle('dirty', dirty);
+  btn.textContent = dirty ? 'Save Changes •' : 'Save Changes';
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(showToast._tid);
+  showToast._tid = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+function renderTagFilterRow(){
+  const row = document.getElementById('tagFilterRow');
+  row.innerHTML = '';
+  
+  allTagsList.forEach(tag=>{
+    const container = document.createElement('div');
+    container.className = 'tag-chip-container';
+
+    const chip = document.createElement('button');
+    chip.className = 'tag-chip' + (activeTagFilters.has(tag) ? ' active' : '');
+    chip.textContent = tag;
+    if(activeTagFilters.has(tag)){
+      chip.style.background = tagColors[tag] || '#555';
+      chip.style.borderColor = tagColors[tag] || '#555';
+    }
+    chip.addEventListener('click', ()=>{
+      if(activeTagFilters.has(tag)) activeTagFilters.delete(tag);
+      else activeTagFilters.add(tag);
+      renderTagFilterRow();
+      renderTable();
+    });
+    container.appendChild(chip);
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'tag-del-btn';
+    delBtn.textContent = '✕';
+    delBtn.title = `Delete "${tag}" tag`;
+    delBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      if(confirm(`Delete tag "${tag}" completely? It will be removed from all movies.`)){
+        delete tagColors[tag];
+        allTagsList = Object.keys(tagColors);
+        activeTagFilters.delete(tag);
+        newTagsSelected.delete(tag);
+        state.forEach(m => {
+          m.tags = m.tags.filter(t => t !== tag);
+        });
+        markDirty();
+        saveTags();
+        renderTagFilterRow();
+        renderNewTagsChecklist();
+        renderTable();
+      }
+    });
+    container.appendChild(delBtn);
+
+    row.appendChild(container);
+  });
+
+  const addWrap = document.createElement('div');
+  addWrap.className = 'add-tag-inline';
+  const tagInput = document.createElement('input');
+  tagInput.type = 'text';
+  tagInput.placeholder = '+ New tag';
+  tagInput.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const val = tagInput.value.trim().toLowerCase().replace(/\s+/g, '-');
+      if(val && !tagColors[val]){
+        tagColors[val] = getRandomColor();
+        allTagsList = Object.keys(tagColors);
+        tagInput.value = '';
+        saveTags();
+        markDirty();
+        renderTagFilterRow();
+        renderNewTagsChecklist();
+        renderTable();
+      }
+    }
+  });
+  addWrap.appendChild(tagInput);
+  row.appendChild(addWrap);
+
+  if(activeTagFilters.size > 0){
+    const clear = document.createElement('span');
+    clear.className = 'clear-filters';
+    clear.textContent = 'clear filters';
+    clear.addEventListener('click', ()=>{
+      activeTagFilters.clear();
+      renderTagFilterRow();
+      renderTable();
+    });
+    row.appendChild(clear);
+  }
+}
+
+function renderNewTagsChecklist(){
+  const wrap = document.getElementById('newTagsChecklist');
+  wrap.innerHTML = '';
+  allTagsList.forEach(tag=>{
+    const el = document.createElement('div');
+    el.className = 'tag-check' + (newTagsSelected.has(tag) ? ' on' : '');
+    el.textContent = tag;
+    if(newTagsSelected.has(tag)){
+      el.style.background = tagColors[tag] || '#555';
+      el.style.borderColor = tagColors[tag] || '#555';
+    }
+    el.addEventListener('click', ()=>{
+      if(newTagsSelected.has(tag)) newTagsSelected.delete(tag);
+      else newTagsSelected.add(tag);
+      renderNewTagsChecklist();
+    });
+    wrap.appendChild(el);
+  });
+}
+
+function getFiltered(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const watchVal = document.getElementById('watchFilter').value;
+  return state.filter((m, idx)=>{
+    m.__idx = idx;
+    if(q && !m.title.toLowerCase().includes(q)) return false;
+    if(watchVal === 'watched' && !m.watched) return false;
+    if(watchVal === 'unwatched' && m.watched) return false;
+    if(activeTagFilters.size > 0){
+      const hasAny = m.tags.some(t=>activeTagFilters.has(t));
+      if(!hasAny) return false;
+    }
+    return true;
+  });
+}
+
+function sortRows(rows){
+  const dirMul = sortDir === 'asc' ? 1 : -1;
+  return rows.slice().sort((a,b)=>{
+    let av, bv;
+    if(sortKey === 'title'){ av=a.title.toLowerCase(); bv=b.title.toLowerCase(); }
+    else if(sortKey === 'year'){ av=a.year; bv=b.year; }
+    else if(sortKey === 'watched'){ av=a.watched?1:0; bv=b.watched?1:0; }
+    if(av < bv) return -1*dirMul;
+    if(av > bv) return 1*dirMul;
+    return a.title.localeCompare(b.title);
+  });
+}
+
+function renderTable(){
+  const rows = sortRows(getFiltered());
+  const tbody = document.getElementById('tableBody');
+  const empty = document.getElementById('emptyState');
+  tbody.innerHTML = '';
+  if(rows.length === 0){
+    empty.style.display = 'block';
+  }else{
+    empty.style.display = 'none';
+  }
+  rows.forEach((m, i)=>{
+    const tr = document.createElement('tr');
+    const isEditing = editingIndices.has(m.__idx);
+    if(isEditing) tr.classList.add('row-editing');
+
+    const tdIdx = document.createElement('td');
+    tdIdx.className = 'col-idx';
+    tdIdx.textContent = i+1;
+    tr.appendChild(tdIdx);
+
+    const tdTitle = document.createElement('td');
+    tdTitle.className = 'col-title';
+    if(isEditing){
+      const inTitle = document.createElement('input');
+      inTitle.type = 'text';
+      inTitle.className = 'edit-input-title';
+      inTitle.value = m.title;
+      inTitle.addEventListener('input', (e)=>{
+        state[m.__idx].title = e.target.value;
+        markDirty();
+      });
+      tdTitle.appendChild(inTitle);
+    }else{
+      tdTitle.textContent = m.title;
+    }
+    tr.appendChild(tdTitle);
+
+    const tdYear = document.createElement('td');
+    tdYear.className = 'col-year';
+    if(isEditing){
+      const inYear = document.createElement('input');
+      inYear.type = 'number';
+      inYear.className = 'edit-input-year';
+      inYear.value = m.year;
+      inYear.addEventListener('input', (e)=>{
+        const val = parseInt(e.target.value, 10);
+        if(!isNaN(val)) state[m.__idx].year = val;
+        markDirty();
+      });
+      tdYear.appendChild(inYear);
+    }else{
+      tdYear.textContent = m.year;
+    }
+    tr.appendChild(tdYear);
+
+    const tdTags = document.createElement('td');
+    tdTags.className = 'col-tags';
+    if(isEditing){
+      allTagsList.forEach(t=>{
+        const on = m.tags.includes(t);
+        const chip = document.createElement('span');
+        chip.className = 'tag-check small' + (on ? ' on' : '');
+        chip.textContent = t;
+        if(on){
+          chip.style.background = tagColors[t] || '#555';
+          chip.style.borderColor = tagColors[t] || '#555';
+        }
+        chip.addEventListener('click', ()=>{
+          const arr = state[m.__idx].tags;
+          const pos = arr.indexOf(t);
+          if(pos === -1) arr.push(t); else arr.splice(pos, 1);
+          markDirty();
+          renderTable();
+        });
+        tdTags.appendChild(chip);
+      });
+    }else{
+      m.tags.forEach(t=>{
+        const pill = document.createElement('span');
+        pill.className = 'pill';
+        pill.textContent = t;
+        pill.style.background = tagColors[t] || '#555';
+        tdTags.appendChild(pill);
+      });
+    }
+    tr.appendChild(tdTags);
+
+    const tdWatch = document.createElement('td');
+    tdWatch.className = 'col-watch';
+    const label = document.createElement('label');
+    label.className = 'stamp-toggle';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = m.watched;
+    input.addEventListener('change', ()=>{
+      state[m.__idx].watched = input.checked;
+      markDirty();
+      renderStats();
+      face.textContent = input.checked ? 'SEEN' : 'UNSEEN';
+    });
+    const face = document.createElement('span');
+    face.className = 'stamp-face';
+    face.textContent = m.watched ? 'SEEN' : 'UNSEEN';
+    label.appendChild(input);
+    label.appendChild(face);
+    tdWatch.appendChild(label);
+    tr.appendChild(tdWatch);
+
+    const tdDel = document.createElement('td');
+    tdDel.className = 'col-del';
+    const editBtn = document.createElement('button');
+    editBtn.className = 'edit-btn' + (isEditing ? ' on' : '');
+    editBtn.title = isEditing ? 'Finish editing' : 'Edit entry';
+    editBtn.textContent = isEditing ? '✓' : '✎';
+    editBtn.addEventListener('click', ()=>{
+      if(editingIndices.has(m.__idx)) editingIndices.delete(m.__idx);
+      else editingIndices.add(m.__idx);
+      renderTable();
+    });
+    tdDel.appendChild(editBtn);
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'del-btn';
+    delBtn.title = 'Remove from ledger';
+    delBtn.textContent = '✕';
+    delBtn.addEventListener('click', ()=>{
+      if(confirm('Delete "' + m.title + '" from ledger?')){
+        state.splice(m.__idx, 1);
+        editingIndices.delete(m.__idx);
+        markDirty();
+        renderTable();
+        renderStats();
+      }
+    });
+    tdDel.appendChild(delBtn);
+    tr.appendChild(tdDel);
+
+    tbody.appendChild(tr);
+  });
+
+  document.getElementById('footCount').textContent =
+    rows.length + ' titles displayed out of ' + state.length + ' total';
+
+  document.querySelectorAll('thead th[data-sort]').forEach(th=>{
+    th.classList.toggle('active', th.dataset.sort === sortKey);
+    const arrow = th.querySelector('.arrow');
+    if(th.dataset.sort === sortKey){
+      arrow.textContent = sortDir === 'asc' ? '▾' : '▴';
+    }else{
+      arrow.textContent = '▾';
+    }
+  });
+
+  if(window.__updateScrollNav) window.__updateScrollNav();
+}
+
+function renderStats(){
+  const total = state.length;
+  const watched = state.filter(m=>m.watched).length;
+  const el = document.getElementById('statsRow');
+  el.innerHTML =
+    '<div class="stat"><span class="num">'+total+'</span><span class="lbl">Total Titles</span></div>' +
+    '<div class="stat"><span class="num">'+watched+'</span><span class="lbl">Watched</span></div>' +
+    '<div class="stat"><span class="num">'+(total-watched)+'</span><span class="lbl">Unwatched</span></div>';
+}
+
+function setupSortHeaders(){
+  document.querySelectorAll('thead th[data-sort]').forEach(th=>{
+    th.addEventListener('click', ()=>{
+      const key = th.dataset.sort;
+      if(sortKey === key){
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      }else{
+        sortKey = key;
+        sortDir = 'asc';
+      }
+      renderTable();
+    });
+  });
+}
+
+function setupControls(){
+  const searchInput = document.getElementById('searchInput');
+  const searchClearBtn = document.getElementById('searchClearBtn');
+
+  searchInput.addEventListener('input', ()=>{
+    searchClearBtn.style.display = searchInput.value.length > 0 ? 'block' : 'none';
+    renderTable();
+  });
+
+  searchClearBtn.addEventListener('click', ()=>{
+    searchInput.value = '';
+    searchClearBtn.style.display = 'none';
+    renderTable();
+  });
+
+  document.getElementById('watchFilter').addEventListener('change', renderTable);
+  document.getElementById('saveBtn').addEventListener('click', saveState);
+
+  const addToggleBtn = document.getElementById('addToggleBtn');
+  const addDrawer = document.getElementById('addDrawer');
+  addToggleBtn.addEventListener('click', ()=>{
+    addDrawer.classList.toggle('open');
+  });
+  document.getElementById('cancelAddBtn').addEventListener('click', ()=>{
+    addDrawer.classList.remove('open');
+    document.getElementById('newTitle').value = '';
+    document.getElementById('newYear').value = '';
+    newTagsSelected.clear();
+    renderNewTagsChecklist();
+  });
+  document.getElementById('confirmAddBtn').addEventListener('click', ()=>{
+    const title = document.getElementById('newTitle').value.trim();
+    const year = parseInt(document.getElementById('newYear').value, 10);
+    if(!title){ showToast('Movie title is required.'); return; }
+    if(!year || year < 1900 || year > 2100){ showToast('Invalid year.'); return; }
+    state.push({
+      title: title,
+      year: year,
+      tags: Array.from(newTagsSelected),
+      watched: false
+    });
+    markDirty();
+    document.getElementById('newTitle').value = '';
+    document.getElementById('newYear').value = '';
+    newTagsSelected.clear();
+    renderNewTagsChecklist();
+    addDrawer.classList.remove('open');
+    renderTable();
+    renderStats();
+    showToast('Title added — don\'t forget to click "Save Changes".');
+  });
+}
+
+function setupTypeaheadScroll() {
+  window.addEventListener('keydown', (e) => {
+    const activeEl = document.activeElement;
+    const isInputActive = activeEl && (
+      activeEl.tagName === 'INPUT' || 
+      activeEl.tagName === 'SELECT' || 
+      activeEl.tagName === 'TEXTAREA' || 
+      activeEl.isContentEditable
+    );
+    
+    if (isInputActive) return;
+    if (e.key.length > 1 || e.ctrlKey || e.altKey || e.metaKey) return;
+
+    keyBuffer += e.key.toLowerCase();
+
+    clearTimeout(keyBufferTimeout);
+    keyBufferTimeout = setTimeout(() => {
+      keyBuffer = '';
+    }, 1000);
+
+    const rows = Array.from(document.querySelectorAll('#tableBody tr'));
+    const matchedRow = rows.find(tr => {
+      const titleCell = tr.querySelector('.col-title');
+      if (!titleCell) return false;
+      
+      const input = titleCell.querySelector('input');
+      const titleText = (input ? input.value : titleCell.textContent).trim().toLowerCase();
+      
+      return titleText.startsWith(keyBuffer);
+    });
+
+    if (matchedRow) {
+      matchedRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      matchedRow.style.transition = 'background-color 0.3s';
+      const originalBg = matchedRow.style.backgroundColor;
+      matchedRow.style.backgroundColor = 'rgba(194, 70, 48, 0.25)';
+      
+      setTimeout(() => {
+        matchedRow.style.backgroundColor = originalBg;
+      }, 800);
+    }
+  });
+}
+
+function setupScrollNav(){
+  const topBtn = document.getElementById('scrollTopBtn');
+  const bottomBtn = document.getElementById('scrollBottomBtn');
+
+  function update(){
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const viewport = window.innerHeight;
+    const fullHeight = document.documentElement.scrollHeight;
+    const nearTop = scrollY < viewport * 0.5;
+    const nearBottom = scrollY + viewport >= fullHeight - 40;
+
+    topBtn.classList.toggle('visible', !nearTop);
+    bottomBtn.classList.toggle('visible', !nearBottom);
+  }
+
+  topBtn.addEventListener('click', ()=>{
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  bottomBtn.addEventListener('click', ()=>{
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  window.__updateScrollNav = update;
+  update();
+}
+
+function init(){
+  loadTags();
+  loadState();
+  applyOneTimeCorrections();
+  renderStats();
+  renderTagFilterRow();
+  renderNewTagsChecklist();
+  setupSortHeaders();
+  setupControls();
+  setupTypeaheadScroll();
+  setupScrollNav();
+  renderTable();
+  window.addEventListener('beforeunload', (e)=>{
+    if(dirty){
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+}
+
+init();
+
+</script>
+</body>
+</html>
